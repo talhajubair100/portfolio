@@ -69,4 +69,32 @@ class AdminController extends Controller
 
     }
 
+
+    public function ChangePassword(){
+        // $id = Auth::user()->id;
+        // $editData = User::find($id);
+
+        return view('admin.admin_change_password');
+    }
+
+    public function UpdatePassword(Request $request){
+        // $validateData = $request->validate([
+        //     'oldpassword' => 'required',
+        //     'password' => 'required|confirmed',
+        // ]);
+
+        // $hashedPassword = Auth::user()->password;
+        // if(Hash::check($request->oldpassword, $hashedPassword)){
+        //     $user = User::find(Auth::id());
+        //     $user->password = Hash::make($request->password);
+        //     $user->save();
+
+        //     Auth::logout();
+
+        //     return redirect()->route('login')->with('successMsg', 'Password Changed Successfully');
+        // }else{
+        //     return redirect()->back()->with('errorMsg', 'Current Password Not Matched');
+        // }
+    }
+
 }
