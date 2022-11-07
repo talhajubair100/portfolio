@@ -25,6 +25,7 @@ class AdminController extends Controller
         $adminData = User::find($id);
 
         return view('admin.admin_profile', compact('adminData'));
+        
 
     }
 
@@ -52,7 +53,12 @@ class AdminController extends Controller
         }
         $data->save();
 
-        return redirect()->route('admin.profile');
+        $notification = array(
+            'message' => 'Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.profile')->with($notification);
 
 
 
