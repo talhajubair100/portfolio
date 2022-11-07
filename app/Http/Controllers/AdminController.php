@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -17,6 +18,44 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+    public function Profile(){
+        $id = Auth::user()->id;
+        $adminData = User::find($id);
+
+        return view('admin.admin_profile', compact('adminData'));
+
+    }
+
+    public function EditProfile(){
+        $id = Auth::user()->id;
+        $editData = User::find($id);
+
+
+        return view('admin.admin_profile_edit', compact('editData'));
+    }
+
+    public function StoreProfile(Request $request){
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->username = $request->username;
+        $data->profile_image = $request->profile_image;
+
+        if($request->file('profile_image')){
+            $file = $request->file('profile_image');
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('upload/admin_images'), $filename);
+            $data['profile_image'] = $filename;
+        }
+        $data->save();
+
+        return redirect()->route('admin.profile');
+
+
+
     }
 
 }
