@@ -29,7 +29,6 @@
 
         <!-- toster Css -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
 
 
 
@@ -104,7 +103,6 @@
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <!-- toster js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
         <script>
         @if(Session::has('message'))
