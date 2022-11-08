@@ -14,7 +14,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('frontend.index');
 });
 
 // All admin route using groups
