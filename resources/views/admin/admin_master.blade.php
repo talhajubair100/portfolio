@@ -99,6 +99,12 @@
 
         <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 
+        <!--tinymce js-->
+        <script src="{{ asset('assets/libs/tinymce/tinymce.min.js') }}"></script>
+
+        <!-- init js -->
+        <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
+
         <!-- App js -->
         <script src="{{ asset('assets/js/app.js') }}"></script>
         <!-- toster js -->
