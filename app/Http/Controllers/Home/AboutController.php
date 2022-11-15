@@ -15,6 +15,11 @@ class AboutController extends Controller
         return view('admin.about.about_page', compact('aboutpage'));
     }
 
+    public function HomeAbout(){
+        $about = About::find(1);
+        return view('frontend.about_page', compact('about'));
+    }
+
 
 
     public function UpdateAbout(Request $request){
