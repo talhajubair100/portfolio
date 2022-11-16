@@ -46,9 +46,10 @@ class AboutController extends Controller
                 'alert-type' => 'success'
             );
 
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('all.multi.image')->with($notification);
         
     }
+
 
 
     public function UpdateAbout(Request $request){
@@ -93,5 +94,60 @@ class AboutController extends Controller
         
     }
 
+
+    public function AllMultiImage(){
+
+        $allMultiImage = MultiImage::all();
+
+        return view('admin.about.all_multi_image', compact('allMultiImage'));
+
+    }
+
+    public function EditMultiImage($id){
+
+        $editMultiImage = MultiImage::findOrFail($id);
+
+        return view('admin.about.edit_multi_image', compact('editMultiImage'));
+    }
+
+    public function UpdateMultiImage(Request $request){
+
+        $multi_image_id = $request->id;
+        if ($request->file('multi_image')){
+            $image = $request->file('multi_image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();// generate id unique for image
+            Image::make($image)->resize(220, 220)->save('upload/multi_image/'.$name_gen);
+            $save_url = 'upload/multi_image/'.$name_gen;
+
+            MultiImage::findOrFail($multi_image_id)->update([
+                
+                'multi_images' => $save_url,
+            ]);
+
+            $notification = array(
+                'message' => 'Image Updated Successfully',
+                'alert-type' => 'success'
+            );
+        
+            return redirect()->route('all.multi.image')->with($notification);
+        }
+        
+    }
+
+    public function DeleteMultiImage($id){
+            
+            $multi = MultiImage::findOrFail($id);
+            $img = $multi->multi_images;
+            unlink($img); // delete image from folder
+
+            MultiImage::findOrFail($id)->delete();
+    
+            $notification = array(
+                'message' => 'Image Deleted Successfully',
+                'alert-type' => 'success'
+            );
+        
+            return redirect()->route('all.multi.image')->with($notification);
+    }
 
 }
