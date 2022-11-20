@@ -52,7 +52,7 @@
                                     <td><img src="{{ asset($item->portfolio_image) }}" alt="" style="width:60px; height:50px"></td>
                                     <td>
                                         <a href="{{ route ('edit.portfolio', $item->id) }}" class="btn btn-info" title="Edit Data"><i class="fas fa-edit"></i></a>
-                                        <a href="#" class="btn btn-danger" id="delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{ route ('delete.portfolio', $item->id) }}" class="btn btn-danger" id="delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                     
                                 </tr>
